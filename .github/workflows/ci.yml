@@ -43,6 +43,7 @@ jobs:
         yarn add npm-check-updates
         cd node_modules/vue-cli-plugin-electron-builder 
         ../npm-check-updates/bin/ncu spectron -u
+        cd ../..
         yarn
         yarn test:unit
       env:
