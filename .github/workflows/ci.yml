@@ -40,10 +40,6 @@ jobs:
     - name: npm install and test
       run: |
         Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
-        yarn add npm-check-updates
-        cd node_modules/vue-cli-plugin-electron-builder 
-        ../npm-check-updates/bin/ncu spectron -u
-        cd ../..
         yarn
         yarn test:unit
       env:
