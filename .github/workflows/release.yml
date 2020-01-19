@@ -26,7 +26,7 @@ jobs:
       id: check_release
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
-        # debug: true
+        debug: true
         script: |
           const result = await github.repos.listReleases({
             owner: 'Arielgordon123',
@@ -51,10 +51,10 @@ jobs:
         snapcraft_token: ${{ secrets.snapcraft_token }}
     - name: Build Electron app
       if: steps.check_release.outputs.result != true
-      run: yarn build
+      run: yarn && yarn build
     - name: Build & release Electron app
       env:
         GOOGLE_SERVICE_PRIVATE_KEY: ${{ secrets.GOOGLE_SERVICE_PRIVATE_KEY }}
         github_token: ${{ secrets.github_token }}
       if: steps.check_release.outputs.result == true
-      run: yarn build --publish always
+      run: yarn && yarn build --publish always
